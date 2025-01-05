@@ -19,6 +19,19 @@ header {
   text-align: center;
 }
 
+.banner-logo {
+  max-width: 100%;
+  height: auto;
+  /* Adjust max-height if needed */
+  max-height: 150px;
+}
+.profile-photo {
+  width: 100px; /* or whatever size you prefer */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%; /* makes it circular */
+}
+
 nav {
   background-color: var(--accent);
   padding: 1rem;
