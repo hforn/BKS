@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knife Sharpening Pricing</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <img
+        src="../images/BKS-banner.png"
+        alt="Brandon's Knife Sharpening"
+        class="banner-logo"
+        onclick="window.location.href = '/'"
+      />
+    </header>
+
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/education/">Education</a>
+      <a href="/pricing/" class="active">Pricing</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+
+    <main class="container pricing-page">
+      <p>
+        I sharpen every knife by hand using techniques that prioritize quality
+        and precision. From small paring knives to large hunting blades, each
+        knife receives a tailored approach with pricing that reflects the actual
+        labor involved. Minimum service: $40 or 3 knives.
+      </p>
+      <div class="sub-container">
+        <div id="step1" class="step active">
+          <h2>Select a Type of Knife</h2>
+          <div class="knife-options">
+            <button class="knife-button" onclick="goToStep2('Kitchen')">
+              <img
+                class="pricing-icons"
+                src="/images/BKS-kitchen.svg"
+                alt="Kitchen Knife"
+              />
+              Kitchen
+            </button>
+            <button class="knife-button" onclick="goToStep2('Pocket')">
+              <img
+                class="pricing-icons"
+                src="/images/BKS-pocket.svg"
+                alt="Pocket Knife"
+              />
+              Pocket
+            </button>
+            <button class="knife-button" onclick="goToStep2('Serrated')">
+              <img
+                class="pricing-icons"
+                src="/images/BKS-serrated.svg"
+                alt="Serrated Knife"
+              />
+              Serrated
+            </button>
+            <button class="knife-button" onclick="goToStep2('Other')">
+              <img
+                class="pricing-icons"
+                src="/images/BKS-hunting.svg"
+                alt="Other Knife"
+              />
+              Other
+            </button>
+          </div>
+        </div>
+
+        <div id="step2" class="step">
+          <div class="step-header">
+            <div class="header-buttons-group">
+              <button class="button back" onclick="goBack(1)">
+                <img class="back-img" src="/images/back-arrow.png" alt="Back" />
+              </button>
+            </div>
+            <h2>Select <span id="knifeType"></span> Knife Category</h2>
+          </div>
+          <div id="knifeCategoryOptions" class="knife-options"></div>
+        </div>
+
+        <div id="step3" class="step">
+          <div class="step-header">
+            <div class="header-buttons-group">
+              <button class="button back" onclick="goBack(2)">
+                <img class="back-img" src="/images/back-arrow.png" alt="Back" />
+              </button>
+              <button class="button reset" onclick="resetCalculator()">
+                <img
+                  class="reset-img"
+                  src="/images/refresh-arrow.png"
+                  alt="Reset"
+                />
+              </button>
+            </div>
+            <h2>Pricing for <span id="knifeCategory"></span> Knives</h2>
+          </div>
+          <div id="categoryDescription" style="margin-bottom: 1rem"></div>
+          <label>
+            Select the condition of your knife:
+            <select
+              id="knifeCondition"
+              class="select"
+              onchange="updateCondition(this.value)"
+            >
+              <option value="good">Good</option>
+              <option value="fair">Fair</option>
+              <option value="poor">Poor</option>
+            </select>
+          </label>
+          <h3 class="WARNING">UNDER CONSTRUCTION: pricing is not accurate</h3>
+          <div class="pricing">
+            <span id="pricingResult">$0</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      &copy; 2025 Brandon's Knife Sharpening. All rights reserved.
+    </footer>
+
+    <script src="./pricing.js"></script>
+  </body>
+</html>
