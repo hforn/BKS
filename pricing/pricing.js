@@ -1,42 +1,45 @@
 const categoryDescriptions = {
   Kitchen: {
     small:
-      "This category includes smaller kitchen knives, such as paring knives or small utility knives.",
+      "This category includes smaller kitchen knives with blade lengths under 5 inches, such as paring knives or small utility knives.",
     standard:
-      "These are your everyday kitchen knives—chef, santoku, cleaver, slicer, etc.",
+      "This category includes most kitchen knives between 5-10 inches, such as chef knives, santoku knives, cleavers, slicers, etc.",
     specialty:
-      "Specialty knives like fillet knives, carving knives, or other unique kitchen blades.",
+      "This category includes knives with blade lengths 10+ inches or knives with very high flex like fillet knives, carving knives, or other unique kitchen blades.",
   },
   Pocket: {
     standard:
-      "Standard pocket knives with straight edges, typically used for EDC tasks.",
+      "This category includes most pocket knives with standard single-edge, straight/convex blade shapes.",
     hawkbill:
-      "Hawkbill blades have a curved tip, useful for tasks like cutting rope or cable.",
+      "This category includes hawkbill/talon blades which have concave blade shape such as karambit knives, and garden knives.",
     "multi-edge":
-      "Knives featuring multiple edges or compound/tanto tips for specialized cutting.",
+      "This category includes knives with multiple edges, such as tanto knives or double-edged knives.",
   },
   Serrated: {
     default:
-      "Serrated knives with scalloped edges, great for bread or tomatoes.",
+      "This category includes serrated sections on knives with concave serrations (micro-serrations excluded). Currently all serrations are sharpened by hand and priced per inch.",
   },
   Other: {
-    "small fixed blade": "Smaller fixed-blade hunting or utility knives.",
+    "small fixed blade":
+      "This category includes small fixed-blade knives under 6 inches.",
     "large fixed blade":
-      "Larger fixed-blade knives for outdoors, hunting, or heavy-duty tasks.",
+      "This category includes large fixed-blade knives over 6 inches.",
     other:
-      "Any unusual blades not covered by other categories (machetes, axes, etc.).",
+      "Any unusual blades not covered by other categories. (handled on a case-by-case basis)",
   },
 };
 
 const gritDescriptions = {
   Standard:
-    "Three-stage progression up to 200 grit + 4 micron, best for meat knives and non-chopping uses.",
-  "Standard Micro-Bevel":
-    "Six-stage progression up to 1000 grit + 2 micron, with microbevel best for precision cutting.",
-  "Refined Micro-Bevel":
-    "Six-stage progression up to 1000 grit + 2 micron, with microbevel for extra sharpness.",
+    "Three-stage progression (80, 200)grit + 4 micron strop, creates a more toothy edge. (does not support microbeveling)",
+  "Standard Microbevel":
+    "Six-stage progression (80, 200 | 3000, 7000)grit + 2 micron strop, creates a sharp sturdy edge with a microbevel for improved durability.",
+  "Refined Microbevel":
+    "Nine-stage progression (80, 200, 600, 1000, 1500, 2200 | 3000, 7000)grit + 2 micron strop, creates a sharp sturdy edge approaching a mirror polish with a microbevel for improved durability.",
   Perfection:
-    "Fourteen-stage progression up to 250k grit for those chasing the most extreme edge, best for high-end collector knives.",
+    "Eighteen-stage progression (80, 200, 600, 1000, 1500, 2200, 3000, 7000, 14K, 22K, 46K, 250K | 3000, 7000, 22K, 46K, 250K)grit + 0.1 micron strop, for those chasing the most extreme edge possible. (with or without microbevel)",
+  "Fine Serrations": "Over 6 serrations per inch.",
+  "Large Serrations": "Under 6 serrations per inch.",
 };
 
 const knifeCategories = {
@@ -81,218 +84,197 @@ let userSelection = {
 const pricingMap = {
   Kitchen: {
     small: {
-      recommended: "Standard Micro-Bevel",
+      recommended: "Standard Microbevel",
       good: {
-        Standard: 20,
-        "Standard Micro-Bevel": 25,
-        "Refined Micro-Bevel": 30,
-        Perfection: 35,
+        Standard: 8,
+        "Standard Microbevel": 10,
+        "Refined Microbevel": 12,
+        Perfection: 18,
       },
       fair: {
-        Standard: 25,
-        "Standard Micro-Bevel": 30,
-        "Refined Micro-Bevel": 35,
-        Perfection: 40,
+        Standard: 9,
+        "Standard Microbevel": 11,
+        "Refined Microbevel": 13,
+        Perfection: 19,
       },
       poor: {
-        Standard: 30,
-        "Standard Micro-Bevel": 35,
-        "Refined Micro-Bevel": 40,
-        Perfection: 45,
+        Standard: 10,
+        "Standard Microbevel": 12,
+        "Refined Microbevel": 14,
+        Perfection: 20,
       },
     },
     standard: {
-      recommended: "Standard Micro-Bevel",
+      recommended: "Standard Microbevel",
       good: {
-        Standard: 15,
-        "Standard Micro-Bevel": 20,
-        "Refined Micro-Bevel": 25,
-        Perfection: 30,
+        Standard: 10,
+        "Standard Microbevel": 12,
+        "Refined Microbevel": 14,
+        Perfection: 25,
       },
       fair: {
-        Standard: 20,
-        "Standard Micro-Bevel": 25,
-        "Refined Micro-Bevel": 30,
-        Perfection: 35,
+        Standard: 12,
+        "Standard Microbevel": 14,
+        "Refined Microbevel": 16,
+        Perfection: 27,
       },
       poor: {
-        Standard: 25,
-        "Standard Micro-Bevel": 30,
-        "Refined Micro-Bevel": 35,
-        Perfection: 40,
+        Standard: 14,
+        "Standard Microbevel": 16,
+        "Refined Microbevel": 18,
+        Perfection: 29,
       },
     },
     specialty: {
-      recommended: "Standard Micro-Bevel",
+      recommended: "Standard Microbevel",
       good: {
-        Standard: 20,
-        "Standard Micro-Bevel": 25,
-        "Refined Micro-Bevel": 30,
-        Perfection: 35,
+        Standard: 16,
+        "Standard Microbevel": 18,
+        "Refined Microbevel": 20,
+        Perfection: 34,
       },
       fair: {
-        Standard: 25,
-        "Standard Micro-Bevel": 30,
-        "Refined Micro-Bevel": 35,
-        Perfection: 40,
+        Standard: 18,
+        "Standard Microbevel": 20,
+        "Refined Microbevel": 22,
+        Perfection: 36,
       },
       poor: {
-        Standard: 30,
-        "Standard Micro-Bevel": 35,
-        "Refined Micro-Bevel": 40,
-        Perfection: 45,
+        Standard: 20,
+        "Standard Microbevel": 22,
+        "Refined Microbevel": 24,
+        Perfection: 38,
       },
     },
   },
   Pocket: {
     standard: {
-      recommended: "Standard Micro-Bevel",
+      recommended: "Refined Microbevel",
       good: {
-        Standard: 10,
-        "Standard Micro-Bevel": 15,
-        "Refined Micro-Bevel": 20,
-        Perfection: 25,
+        Standard: 8,
+        "Standard Microbevel": 10,
+        "Refined Microbevel": 12,
+        Perfection: 20,
       },
       fair: {
-        Standard: 15,
-        "Standard Micro-Bevel": 20,
-        "Refined Micro-Bevel": 25,
-        Perfection: 30,
+        Standard: 10,
+        "Standard Microbevel": 12,
+        "Refined Microbevel": 14,
+        Perfection: 22,
       },
       poor: {
-        Standard: 20,
-        "Standard Micro-Bevel": 25,
-        "Refined Micro-Bevel": 30,
-        Perfection: 35,
+        Standard: 13,
+        "Standard Microbevel": 15,
+        "Refined Microbevel": 17,
+        Perfection: 25,
       },
     },
     hawkbill: {
-      recommended: "Standard Micro-Bevel",
+      recommended: "Refined Microbevel",
       good: {
-        Standard: 15,
-        "Standard Micro-Bevel": 20,
-        "Refined Micro-Bevel": 25,
-        Perfection: 30,
+        Standard: 8,
+        "Standard Microbevel": 10,
+        "Refined Microbevel": 12,
+        Perfection: 21,
       },
       fair: {
-        Standard: 20,
-        "Standard Micro-Bevel": 25,
-        "Refined Micro-Bevel": 30,
-        Perfection: 35,
+        Standard: 11,
+        "Standard Microbevel": 13,
+        "Refined Microbevel": 15,
+        Perfection: 23,
       },
       poor: {
-        Standard: 25,
-        "Standard Micro-Bevel": 30,
-        "Refined Micro-Bevel": 35,
-        Perfection: 40,
+        Standard: 15,
+        "Standard Microbevel": 17,
+        "Refined Microbevel": 19,
+        Perfection: 26,
       },
     },
     "multi-edge": {
-      recommended: "Standard Micro-Bevel",
+      recommended: "Refined Microbevel",
       good: {
-        Standard: 20,
-        "Standard Micro-Bevel": 25,
-        "Refined Micro-Bevel": 30,
-        Perfection: 35,
+        Standard: 12,
+        "Standard Microbevel": 14,
+        "Refined Microbevel": 16,
+        Perfection: 30,
       },
       fair: {
-        Standard: 25,
-        "Standard Micro-Bevel": 30,
-        "Refined Micro-Bevel": 35,
-        Perfection: 40,
+        Standard: 14,
+        "Standard Microbevel": 16,
+        "Refined Microbevel": 18,
+        Perfection: 32,
       },
       poor: {
-        Standard: 30,
-        "Standard Micro-Bevel": 35,
-        "Refined Micro-Bevel": 40,
-        Perfection: 45,
+        Standard: 16,
+        "Standard Microbevel": 18,
+        "Refined Microbevel": 20,
+        Perfection: 34,
       },
     },
   },
   Serrated: {
-    recommended: "Standard Micro-Bevel",
+    recommended: "NA",
     good: {
-      Standard: 10,
-      "Standard Micro-Bevel": 15,
-      "Refined Micro-Bevel": 20,
-      Perfection: 25,
+      "Large Serrations": "10/inch",
+      "Fine Serrations": "15/inch",
     },
     fair: {
-      Standard: 15,
-      "Standard Micro-Bevel": 20,
-      "Refined Micro-Bevel": 25,
-      Perfection: 30,
+      "Large Serrations": "12/inch",
+      "Fine Serrations": "17/inch",
     },
     poor: {
-      Standard: 20,
-      "Standard Micro-Bevel": 25,
-      "Refined Micro-Bevel": 30,
-      Perfection: 35,
+      "Large Serrations": "14/inch",
+      "Fine Serrations": "19/inch",
     },
   },
   Other: {
     "small fixed blade": {
-      recommended: "Standard Micro-Bevel",
+      recommended: "Standard Microbevel",
       good: {
         Standard: 10,
-        "Standard Micro-Bevel": 15,
-        "Refined Micro-Bevel": 20,
+        "Standard Microbevel": 12,
+        "Refined Microbevel": 14,
         Perfection: 25,
       },
       fair: {
-        Standard: 15,
-        "Standard Micro-Bevel": 20,
-        "Refined Micro-Bevel": 25,
-        Perfection: 30,
+        Standard: 12,
+        "Standard Microbevel": 14,
+        "Refined Microbevel": 16,
+        Perfection: 27,
       },
       poor: {
-        Standard: 20,
-        "Standard Micro-Bevel": 25,
-        "Refined Micro-Bevel": 30,
-        Perfection: 35,
+        Standard: 14,
+        "Standard Microbevel": 16,
+        "Refined Microbevel": 18,
+        Perfection: 29,
       },
     },
     "large fixed blade": {
-      recommended: "Standard Micro-Bevel",
+      recommended: "Standard Microbevel",
       good: {
-        Standard: 15,
-        "Standard Micro-Bevel": 20,
-        "Refined Micro-Bevel": 25,
-        Perfection: 30,
+        Standard: 14,
+        "Standard Microbevel": 16,
+        "Refined Microbevel": 18,
+        Perfection: 32,
       },
       fair: {
-        Standard: 20,
-        "Standard Micro-Bevel": 25,
-        "Refined Micro-Bevel": 30,
-        Perfection: 35,
+        Standard: 16,
+        "Standard Microbevel": 18,
+        "Refined Microbevel": 20,
+        Perfection: 34,
       },
       poor: {
-        Standard: 25,
-        "Standard Micro-Bevel": 30,
-        "Refined Micro-Bevel": 35,
-        Perfection: 40,
+        Standard: 18,
+        "Standard Microbevel": 20,
+        "Refined Microbevel": 22,
+        Perfection: 36,
       },
     },
     other: {
-      recommended: "Standard Micro-Bevel",
-      good: {
-        Standard: 20,
-        "Standard Micro-Bevel": 25,
-        "Refined Micro-Bevel": 30,
-        Perfection: 35,
-      },
-      fair: {
-        Standard: 25,
-        "Standard Micro-Bevel": 30,
-        "Refined Micro-Bevel": 35,
-        Perfection: 40,
-      },
-      poor: {
-        Standard: 30,
-        "Standard Micro-Bevel": 35,
-        "Refined Micro-Bevel": 40,
-        Perfection: 45,
-      },
+      recommended: "Standard Microbevel",
+      good: {},
+      fair: {},
+      poor: {},
     },
   },
 };
@@ -389,15 +371,9 @@ function displayPricing() {
     return;
   }
 
-  if (type === "Serrated") {
-    pricingSection.innerHTML =
-      "<p>CUSTOM SERRATED PRICING DATA (it also needs to be fairly wide to not screw up the buttons)</p>";
-    return;
-  }
-
   if (category === "Other") {
     pricingSection.innerHTML =
-      "<p>CUSTOM OTHER PRICING DATA (it also needs to be fairly wide to not screw up the buttons)</p>";
+      '<p>Contact me for a quote on any custom "Other" knives.</p>';
     return;
   }
 
