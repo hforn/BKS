@@ -36,7 +36,7 @@ const gritDescriptions = {
     "common flat apex edge (no microbevel).",
   ],
   "Standard Microbevel": [
-    "Seven-stage progression",
+    "Six-stage progression",
     "Grit: 80, 200, 600 | 1500, 3000, 7000",
     "perfect balance between sharpness, edge retention, and cost.",
   ],
