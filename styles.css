@@ -311,19 +311,63 @@ a {
   gap: 0.7rem;
 }
 
-.price {
-  font-size: 1.05rem;
-  margin-right: 5px;
+.pricing-option {
+  margin-bottom: 15px; /* Adds space between each pricing section */
+  padding: 10px 0;
 }
 
-select.select {
-  background-color: #444;
+.price {
+  font-size: 1.2rem;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+/* .recommended {
+  color: #ff3131;
+  font-weight: bold;
+  margin-left: 5px;
+} */
+
+.grit-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.hover-text {
+  position: relative;
+  cursor: pointer;
+  text-decoration: underline;
+  /* color: #ff3131; */
+}
+
+.tooltip {
+  visibility: hidden;
+  width: 250px;
+  background-color: #222;
   color: #fff;
-  padding: 0.2rem 0.6rem;
-  border-radius: 6px;
-  border: none;
-  margin-left: 0.5rem;
-  font-size: 0.95rem;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 10;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-text:hover .tooltip,
+.hover-text:focus .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.static-text {
+  font-size: 1rem;
+  color: #ccc;
+  margin-left: 5px;
 }
 
 /* RESPONSIVE DESIGN */

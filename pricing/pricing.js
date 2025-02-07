@@ -5,7 +5,7 @@ const categoryDescriptions = {
     standard:
       "This category includes most kitchen knives between 5-10 inches, such as chef knives, santoku knives, cleavers, slicers, etc.",
     specialty:
-      "This category includes knives with blade lengths 10+ inches or knives with very high flex like fillet knives, carving knives, or other unique kitchen blades.",
+      "This category includes knives with blade lengths over 10 inches or knives with very high flex like fillet knives, carving knives, or other unique kitchen blades.",
   },
   Pocket: {
     standard:
@@ -15,10 +15,10 @@ const categoryDescriptions = {
     "multi-edge":
       "This category includes knives with multiple edges, such as tanto knives or double-edged knives.",
   },
-  Serrated: {
+  /* Serrated: {
     default:
       "This category includes serrated sections on knives with concave serrations (micro-serrations excluded). Currently all serrations are sharpened by hand and priced per inch.",
-  },
+  }, */
   Other: {
     "small fixed blade":
       "This category includes small fixed-blade knives under 6 inches.",
@@ -30,16 +30,25 @@ const categoryDescriptions = {
 };
 
 const gritDescriptions = {
-  Standard:
-    "Three-stage progression (80, 200)grit + 4 micron strop, creates a more toothy edge. (does not support microbeveling)",
-  "Standard Microbevel":
-    "Six-stage progression (80, 200 | 3000, 7000)grit + 2 micron strop, creates a sharp sturdy edge with a microbevel for improved durability.",
-  "Refined Microbevel":
+  Standard: [
+    "Four-stage progression",
+    "Grit: 80, 200, 600, 5µm strop",
+    "common flat apex edge (no microbevel).",
+  ],
+  "Standard Microbevel": [
+    "Seven-stage progression",
+    "Grit: 80, 200, 600 | 1500, 3000, 7000",
+    "perfect balance between sharpness, edge retention, and cost.",
+  ],
+  /* "Refined Microbevel":
     "Nine-stage progression (80, 200, 600, 1000, 1500, 2200 | 3000, 7000)grit + 2 micron strop, creates a sharp sturdy edge approaching a mirror polish with a microbevel for improved durability.",
-  Perfection:
-    "Eighteen-stage progression (80, 200, 600, 1000, 1500, 2200, 3000, 7000, 14K, 22K, 46K, 250K | 3000, 7000, 22K, 46K, 250K)grit + 0.1 micron strop, for those chasing the most extreme edge possible. (with or without microbevel)",
-  "Fine Serrations": "Over 6 serrations per inch.",
-  "Large Serrations": "Under 6 serrations per inch.",
+ */ Perfection: [
+    "Nineteen-stage progression",
+    "Grit: 80, 200, 600, 1000, 1500, 2200, 3000, 7000, 14K, 22K, 46K, 250K | 1500, 3000, 7000, 22K, 46K, 250K, 0.1µm strop",
+    "for those chasing the most extreme edge possible. (with or without microbevel)",
+  ],
+  /* "Fine Serrations": "Over 6 serrations per inch.",
+  "Large Serrations": "Under 6 serrations per inch.", */
 };
 
 const knifeCategories = {
@@ -78,7 +87,6 @@ let userSelection = {
   type: null,
   category: null,
   condition: "good",
-  grit: "Standard",
 };
 
 const pricingMap = {
@@ -88,10 +96,10 @@ const pricingMap = {
       good: {
         Standard: 8,
         "Standard Microbevel": 10,
-        "Refined Microbevel": 12,
-        Perfection: 18,
+        /* "Refined Microbevel": 12, */
+        Perfection: 20,
       },
-      fair: {
+      /* fair: {
         Standard: 9,
         "Standard Microbevel": 11,
         "Refined Microbevel": 13,
@@ -102,17 +110,17 @@ const pricingMap = {
         "Standard Microbevel": 12,
         "Refined Microbevel": 14,
         Perfection: 20,
-      },
+      }, */
     },
     standard: {
       recommended: "Standard Microbevel",
       good: {
-        Standard: 10,
-        "Standard Microbevel": 12,
-        "Refined Microbevel": 14,
-        Perfection: 25,
+        Standard: 12,
+        "Standard Microbevel": 14,
+        /* "Refined Microbevel": 14, */
+        Perfection: 28,
       },
-      fair: {
+      /* fair: {
         Standard: 12,
         "Standard Microbevel": 14,
         "Refined Microbevel": 16,
@@ -123,17 +131,17 @@ const pricingMap = {
         "Standard Microbevel": 16,
         "Refined Microbevel": 18,
         Perfection: 29,
-      },
+      }, */
     },
     specialty: {
       recommended: "Standard Microbevel",
       good: {
         Standard: 16,
         "Standard Microbevel": 18,
-        "Refined Microbevel": 20,
-        Perfection: 34,
+        /* "Refined Microbevel": 20, */
+        Perfection: 36,
       },
-      fair: {
+      /* fair: {
         Standard: 18,
         "Standard Microbevel": 20,
         "Refined Microbevel": 22,
@@ -144,7 +152,7 @@ const pricingMap = {
         "Standard Microbevel": 22,
         "Refined Microbevel": 24,
         Perfection: 38,
-      },
+      }, */
     },
   },
   Pocket: {
@@ -153,10 +161,10 @@ const pricingMap = {
       good: {
         Standard: 8,
         "Standard Microbevel": 10,
-        "Refined Microbevel": 12,
+        /* "Refined Microbevel": 12, */
         Perfection: 20,
       },
-      fair: {
+      /* fair: {
         Standard: 10,
         "Standard Microbevel": 12,
         "Refined Microbevel": 14,
@@ -167,17 +175,17 @@ const pricingMap = {
         "Standard Microbevel": 15,
         "Refined Microbevel": 17,
         Perfection: 25,
-      },
+      }, */
     },
     hawkbill: {
       recommended: "Refined Microbevel",
       good: {
-        Standard: 8,
-        "Standard Microbevel": 10,
-        "Refined Microbevel": 12,
-        Perfection: 21,
+        Standard: 9,
+        "Standard Microbevel": 11,
+        /* "Refined Microbevel": 12, */
+        Perfection: 24,
       },
-      fair: {
+      /* fair: {
         Standard: 11,
         "Standard Microbevel": 13,
         "Refined Microbevel": 15,
@@ -188,17 +196,17 @@ const pricingMap = {
         "Standard Microbevel": 17,
         "Refined Microbevel": 19,
         Perfection: 26,
-      },
+      }, */
     },
     "multi-edge": {
       recommended: "Refined Microbevel",
       good: {
-        Standard: 12,
-        "Standard Microbevel": 14,
-        "Refined Microbevel": 16,
-        Perfection: 30,
+        Standard: 14,
+        "Standard Microbevel": 16,
+        /* "Refined Microbevel": 16, */
+        Perfection: 34,
       },
-      fair: {
+      /* fair: {
         Standard: 14,
         "Standard Microbevel": 16,
         "Refined Microbevel": 18,
@@ -209,10 +217,10 @@ const pricingMap = {
         "Standard Microbevel": 18,
         "Refined Microbevel": 20,
         Perfection: 34,
-      },
+      }, */
     },
   },
-  Serrated: {
+  /* Serrated: {
     recommended: "NA",
     good: {
       "Large Serrations": "10/inch",
@@ -226,17 +234,17 @@ const pricingMap = {
       "Large Serrations": "14/inch",
       "Fine Serrations": "19/inch",
     },
-  },
+  }, */
   Other: {
     "small fixed blade": {
       recommended: "Standard Microbevel",
       good: {
         Standard: 10,
         "Standard Microbevel": 12,
-        "Refined Microbevel": 14,
+        /* "Refined Microbevel": 14, */
         Perfection: 25,
       },
-      fair: {
+      /* fair: {
         Standard: 12,
         "Standard Microbevel": 14,
         "Refined Microbevel": 16,
@@ -247,17 +255,17 @@ const pricingMap = {
         "Standard Microbevel": 16,
         "Refined Microbevel": 18,
         Perfection: 29,
-      },
+      }, */
     },
     "large fixed blade": {
       recommended: "Standard Microbevel",
       good: {
         Standard: 14,
         "Standard Microbevel": 16,
-        "Refined Microbevel": 18,
-        Perfection: 32,
+        /* "Refined Microbevel": 18, */
+        Perfection: 36,
       },
-      fair: {
+      /* fair: {
         Standard: 16,
         "Standard Microbevel": 18,
         "Refined Microbevel": 20,
@@ -268,7 +276,7 @@ const pricingMap = {
         "Standard Microbevel": 20,
         "Refined Microbevel": 22,
         Perfection: 36,
-      },
+      }, */
     },
     other: {
       recommended: "Standard Microbevel",
@@ -327,7 +335,7 @@ function goToStep3(category) {
 }
 
 function displayPricing() {
-  const { type, category, condition } = userSelection;
+  const { type, category } = userSelection;
   const pricingSection = document.getElementById("pricingResult");
   const descContainer = document.getElementById("categoryDescription");
 
@@ -337,57 +345,61 @@ function displayPricing() {
     descContainer.innerHTML = "";
   }
 
-  // Show the category description if it exists
-  // For Serrated or Other, if you want a single default text, do that here
+  // Exit early for Serrated knives
   if (type === "Serrated") {
-    descContainer.innerHTML =
-      categoryDescriptions.Serrated.default ||
-      "Serrated knives with scalloped edges, ideal for breads, etc.";
-  } else if (type === "Other") {
-    const catKey = category.toLowerCase();
-    const otherDesc =
-      categoryDescriptions.Other?.[catKey] ||
-      "Miscellaneous blades not covered by standard categories.";
-    descContainer.innerHTML = otherDesc;
-  } else {
-    // For Kitchen or Pocket
-    const catKey = category.toLowerCase();
-    const desc =
-      categoryDescriptions?.[type]?.[catKey] ||
-      "No specific description available for this category.";
-    descContainer.innerHTML = desc;
+    pricingSection.innerHTML =
+      "<p>Not currently offering sharpening services on serrated knives.</p>";
+    return;
   }
 
-  // Now handle actual pricing
-  const recommendedGrit =
-    pricingMap?.[type]?.[category?.toLowerCase()]?.recommended ||
-    pricingMap?.[type]?.recommended;
-  const pricingOptions =
-    pricingMap?.[type]?.[category?.toLowerCase()]?.[condition] ||
-    pricingMap?.[type]?.[condition];
+  // Display category description if available
+  if (categoryDescriptions?.[type]?.[category.toLowerCase()]) {
+    descContainer.innerHTML = `<p>${
+      categoryDescriptions[type][category.toLowerCase()]
+    }</p>`;
+  } else {
+    descContainer.innerHTML =
+      "<p>No specific description available for this category.</p>";
+  }
 
+  // Get pricing options
+  const pricingOptions = pricingMap?.[type]?.[category.toLowerCase()];
   if (!pricingOptions) {
     pricingSection.innerHTML = "<p>Price Not Available</p>";
     return;
   }
 
-  if (category === "Other") {
-    pricingSection.innerHTML =
-      '<p>Contact me for a quote on any custom "Other" knives.</p>';
-    return;
-  }
+  // Get recommended grit
+  const recommendedGrit =
+    pricingMap?.[type]?.[category.toLowerCase()]?.recommended;
 
-  Object.entries(pricingOptions).forEach(([gritLevel, price]) => {
-    const description =
-      gritDescriptions[gritLevel] || "No description available.";
-    const priceElement = document.createElement("p");
-    priceElement.innerHTML = `
-        <strong class="price">$${price}</strong> ${
-      gritLevel === recommendedGrit ? "(Recommended)" : ""
-    } <br>
-        <strong>${gritLevel.replace("-", " ")}</strong>: ${description}
-      `;
-    pricingSection.appendChild(priceElement);
+  // Loop through available grit options
+  Object.entries(pricingOptions.good).forEach(([gritLevel, price]) => {
+    const gritData = gritDescriptions[gritLevel] || [
+      "",
+      "",
+      "No description available.",
+    ];
+
+    // Construct the full pricing entry inside a single <p> tag
+    const priceEntry = document.createElement("p");
+    priceEntry.classList.add("pricing-entry");
+
+    priceEntry.innerHTML = `
+    <strong class="price">$${price}</strong> ${
+      gritLevel === recommendedGrit
+        ? "<span class='recommended'>(Recommended)</span>"
+        : ""
+    }
+    <br>
+    <strong>${gritLevel.replace("-", " ")}:</strong>
+    <span class="hover-text">${gritData[0]}<span class="tooltip">${
+      gritData[1]
+    }</span></span>, ${gritData[2]}
+  `;
+
+    // Append to pricing section
+    pricingSection.appendChild(priceEntry);
   });
 }
 
